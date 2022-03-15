@@ -1,0 +1,21 @@
+{
+    "name": "douggonsouza/request",
+    "description": "Tratamento da requisição e coleta de parâmetros para o roteamento",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Douggonsouza\\Request\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Douglas Gonçalves de Souza",
+            "email": "douggonsouza@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.2"
+    }
+}
