@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Douggonsouza\\Request\\": "src/"
+            "douggonsouza\\request\\": "src/"
         }
     },
     "authors": [
