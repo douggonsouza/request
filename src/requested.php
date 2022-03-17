@@ -2,28 +2,28 @@
 
 namespace douggonsouza\request;
 
-use douggonsouza\request\variablesInterface;
+use douggonsouza\request\usagesInterface;
 
 /**
  * REQUESTED
  * 
  * Trata a requisição para a identificação de parâmetros necessários ao roteamento
  */
-class requested implements variablesInterface
+abstract class requested implements usagesInterface
 {
-    protected static $variables;
+    protected static $usages;
 
     /**
      * Defini o objeto variable a ser utilizado
      *
-     * @param variablesInterface $variable
+     * @param usagesInterface $variable
      * 
      * @return object
      */
-    public static function variable(variablesInterface $variable)
+    public static function usages(usagesInterface $usages)
     {
-        self::setVariables($variable);
-        return self::getVariables();
+        self::setUsages($usages);
+        return self::getUsages();
     }
 
     /**
@@ -33,95 +33,21 @@ class requested implements variablesInterface
      * 
      * @return self
      */
-    public function basicSequence(array $folders)
+    public function parameters(array $folders)
     {
-        if(self::getVariables() !== null){
-            return self::getVariables()->basicSequence($folders);
+        if(self::getUsages() !== null){
+            return self::getUsages()->parameters($folders);
         }
         
         return false;
     }
 
     /**
-     * Colhe o host
-     *
-     * @return self
-     */
-    public function host()
-    {
-        if(self::getVariables() !== null){
-            return self::getVariables()->host();
-        }
-
-        return false;
-    }
-
-    /**
-     * Colhe a request
-     *
-     * @return self 
-     */
-    public function request()
-    {
-        if(self::getVariables() !== null){
-            return self::getVariables()->request();
-        }
-
-        return false;
-    }
-
-    /**
-     * Colhe o diretório
-     *
-     * @return self
-     */
-    public function dir()
-    {
-        if(self::getVariables() !== null){
-            return self::getVariables()->dir();
-        }
-
-        return false;
-    }
-
-    /**
-     * Colhe a queryString
-     *
-     * @param string $request
-     * 
-     * @return self
-     */
-    public function querystring()
-    {
-        if(self::getVariables() !== null){
-            return self::getVariables()->queryString();
-        }
-
-        return false;
-    }
-
-    /**
-     * Colhe o folder
-     *
-     * @param string $request
-     * 
-     * @return self
-     */
-    public function folder()
-    {
-        if(self::getVariables() !== null){
-            return self::getVariables()->folder();
-        }
-
-        return false;
-    }
-
-    /**
      * Get the value of variables
      */ 
-    public static function getVariables()
+    public static function getUsages()
     {
-        return self::$variables;
+        return self::$usages;
     }
 
     /**
@@ -129,10 +55,10 @@ class requested implements variablesInterface
      *
      * @return  self
      */ 
-    public static function setVariables($variables)
+    public static function setUsages($usages)
     {
-        if(isset($variables) && !empty($variables)){
-            self::$variables = $variables;
+        if(isset($usages) && !empty($usages)){
+            self::$usages = $usages;
         }
     }
 }

@@ -23,8 +23,8 @@ class ComposerStaticInit3098b49fd9e70981e952403291d870f1
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'douggonsouza\\request\\requested' => __DIR__ . '/../..' . '/src/requested.php',
-        'douggonsouza\\request\\variables' => __DIR__ . '/../..' . '/src/variables.php',
-        'douggonsouza\\request\\variablesInterface' => __DIR__ . '/../..' . '/src/variablesInterface.php',
+        'douggonsouza\\request\\usages' => __DIR__ . '/../..' . '/src/usages.php',
+        'douggonsouza\\request\\usagesInterface' => __DIR__ . '/../..' . '/src/usagesInterface.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
