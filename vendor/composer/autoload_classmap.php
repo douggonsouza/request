@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'douggonsouza\\request\\requested' => $baseDir . '/src/requested.php',
+    'douggonsouza\\request\\routes' => $baseDir . '/src/routes.php',
+    'douggonsouza\\request\\routesInterface' => $baseDir . '/src/routesInterface.php',
     'douggonsouza\\request\\usages' => $baseDir . '/src/usages.php',
     'douggonsouza\\request\\usagesInterface' => $baseDir . '/src/usagesInterface.php',
 );

@@ -121,14 +121,38 @@ class usages implements usagesInterface
         $route = null;
 
         foreach($this->getRoutes() as $index => $value){
-            if(strstr($this->getRequest(), $index)){
+            if($this->getRequest() === '/' && $index === 'default'){
                 $this->setRoute($value);
-                break;
+                return $this;
+            }
+
+            if (!preg_match(self::toRegex($index), $this->getRequest(), $params)) {
+                $this->setRoute($value);
+                return $this;
             }
         }
 
         return $this;
     }
+
+    /**
+     * Traduz a string para regex
+     *
+     * @param string $text
+     * @return string
+     */
+    protected static function toRegex(string $text)
+    {
+        if(!isset($text) || empty($text)){
+            return '';
+        }
+
+        // traduz para regex
+        return '/^'.$text.'/';
+    }
+
+
+
 
     /**
      * Get the value of request

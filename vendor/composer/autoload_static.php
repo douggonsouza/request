@@ -23,6 +23,8 @@ class ComposerStaticInit3098b49fd9e70981e952403291d870f1
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'douggonsouza\\request\\requested' => __DIR__ . '/../..' . '/src/requested.php',
+        'douggonsouza\\request\\routes' => __DIR__ . '/../..' . '/src/routes.php',
+        'douggonsouza\\request\\routesInterface' => __DIR__ . '/../..' . '/src/routesInterface.php',
         'douggonsouza\\request\\usages' => __DIR__ . '/../..' . '/src/usages.php',
         'douggonsouza\\request\\usagesInterface' => __DIR__ . '/../..' . '/src/usagesInterface.php',
     );
