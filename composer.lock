@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/douggonsouza/regexed.git",
-                "reference": "8f2f42920e72dc1700265defd89c835dd8c8d6cc"
+                "reference": "433f175d6a3c2de69d021e15f496cd78610f4315"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/douggonsouza/regexed/zipball/8f2f42920e72dc1700265defd89c835dd8c8d6cc",
-                "reference": "8f2f42920e72dc1700265defd89c835dd8c8d6cc",
+                "url": "https://api.github.com/repos/douggonsouza/regexed/zipball/433f175d6a3c2de69d021e15f496cd78610f4315",
+                "reference": "433f175d6a3c2de69d021e15f496cd78610f4315",
                 "shasum": ""
             },
             "default-branch": true,
@@ -40,9 +40,9 @@
             "description": "Tradutor de palavras para expressões regex",
             "support": {
                 "issues": "https://github.com/douggonsouza/regexed/issues",
-                "source": "https://github.com/douggonsouza/regexed/tree/v1.0.0"
+                "source": "https://github.com/douggonsouza/regexed/tree/v1.0.1"
             },
-            "time": "2022-03-20T12:23:26+00:00"
+            "time": "2022-03-20T20:38:18+00:00"
         }
     ],
     "packages-dev": [],

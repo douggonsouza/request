@@ -7,14 +7,14 @@ namespace Composer\Autoload;
 class ComposerStaticInit587f5bc71bb3ec75bf0a731c04669648
 {
     public static $prefixLengthsPsr4 = array (
-        'D' => 
+        'd' => 
         array (
-            'Douggonsouza\\Regexed\\' => 21,
+            'douggonsouza\\regexed\\' => 21,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Douggonsouza\\Regexed\\' => 
+        'douggonsouza\\regexed\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
@@ -22,6 +22,9 @@ class ComposerStaticInit587f5bc71bb3ec75bf0a731c04669648
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'douggonsouza\\regexed\\dicionary' => __DIR__ . '/../..' . '/src/dicionary.php',
+        'douggonsouza\\regexed\\dicionaryInterface' => __DIR__ . '/../..' . '/src/dicionaryInterface.php',
+        'douggonsouza\\regexed\\regexed' => __DIR__ . '/../..' . '/src/regexed.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

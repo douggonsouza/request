@@ -7,4 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'douggonsouza\\regexed\\dicionary' => $baseDir . '/src/dicionary.php',
+    'douggonsouza\\regexed\\dicionaryInterface' => $baseDir . '/src/dicionaryInterface.php',
+    'douggonsouza\\regexed\\regexed' => $baseDir . '/src/regexed.php',
 );

@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '26605e378f8b4696ba9cece607350d1fcee80e64',
+        'reference' => '596e8798f87aba272d4471e2b064c971abd9ce15',
         'name' => 'douggonsouza/request',
         'dev' => true,
     ),
@@ -18,7 +18,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => '8f2f42920e72dc1700265defd89c835dd8c8d6cc',
+            'reference' => '433f175d6a3c2de69d021e15f496cd78610f4315',
             'dev_requirement' => false,
         ),
         'douggonsouza/request' => array(
@@ -27,7 +27,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '26605e378f8b4696ba9cece607350d1fcee80e64',
+            'reference' => '596e8798f87aba272d4471e2b064c971abd9ce15',
             'dev_requirement' => false,
         ),
     ),

@@ -3,6 +3,8 @@
 namespace douggonsouza\request;
 
 use douggonsouza\request\usagesInterface;
+use douggonsouza\regexed\regexed;
+use douggonsouza\regexed\dicionaryInterface;
 
 /**
  * HANDILING
@@ -18,6 +20,12 @@ class usages implements usagesInterface
     private $queryString;
     private $route;
     private $routes;
+    private $regexed;
+
+    public function __construct(dicionaryInterface $dicionary)
+    {
+        $this->setRegexed($dicionary);
+    }
 
     /**
      * Executa a sequencia básica
@@ -126,7 +134,7 @@ class usages implements usagesInterface
                 return $this;
             }
 
-            if (!preg_match(self::toRegex($index), $this->getRequest(), $params)) {
+            if (preg_match($this->translate($index), $this->getRequest(), $params)) {
                 $this->setRoute($value);
                 return $this;
             }
@@ -141,14 +149,18 @@ class usages implements usagesInterface
      * @param string $text
      * @return string
      */
-    protected static function toRegex(string $text)
+    protected function translate(string $text)
     {
+        if($this->getRegexed() === null){
+            throw new \Exception("Não encontrada a classe de tradução regexed.");
+        }
+
         if(!isset($text) || empty($text)){
             return '';
         }
 
         // traduz para regex
-        return '/^'.$text.'/';
+        return '/^' . $this->getRegexed()->translate($text) . '/';
     }
 
 
@@ -302,6 +314,28 @@ class usages implements usagesInterface
     {
         if(isset($route) && !empty($route)){
             $this->route = $route;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of regexed
+     */ 
+    public function getRegexed()
+    {
+        return $this->regexed;
+    }
+
+    /**
+     * Set the value of regexed
+     *
+     * @return  self
+     */ 
+    public function setRegexed($dicionary)
+    {
+        if(isset($dicionary) && !empty($dicionary)){
+            $this->regexed = new regexed($dicionary);
         }
 
         return $this;

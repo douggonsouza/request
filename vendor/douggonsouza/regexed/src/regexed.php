@@ -5,7 +5,7 @@ namespace douggonsouza\regexed;
 use douggonsouza\regexed\dicionaryInterface;
 use douggonsouza\regexed\dicionary;
 
-abstract class regexed implements dicionaryInterface
+class regexed implements dicionaryInterface
 {
     protected $dicionary;
 
@@ -29,10 +29,28 @@ abstract class regexed implements dicionaryInterface
     public function words()
     {
         if(isset($this->dicionary)){
-            return $this->dicionary->words();
+            return $this->getDicionary()->words();
         }
 
         return array();
+    }
+
+    /**
+     * Traduz o texto para o regex
+     *
+     * @param string $text
+     * 
+     * @return string
+     * 
+     */
+    public function translate(string $text)
+    {
+        $words = $this->words();
+        foreach($words as $item){
+            $text = $this->getDicionary()->$item($text);
+        }
+
+        return $text;
     }
 
     /**
