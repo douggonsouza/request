@@ -10,6 +10,7 @@ class ComposerStaticInit3098b49fd9e70981e952403291d870f1
         'd' => 
         array (
             'douggonsouza\\request\\' => 21,
+            'douggonsouza\\regexed\\' => 21,
         ),
     );
 
@@ -18,15 +19,24 @@ class ComposerStaticInit3098b49fd9e70981e952403291d870f1
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
+        'douggonsouza\\regexed\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/douggonsouza/regexed/src',
+        ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'douggonsouza\\regexed\\dicionary' => __DIR__ . '/..' . '/douggonsouza/regexed/src/dicionary.php',
+        'douggonsouza\\regexed\\dicionaryInterface' => __DIR__ . '/..' . '/douggonsouza/regexed/src/dicionaryInterface.php',
+        'douggonsouza\\regexed\\regexed' => __DIR__ . '/..' . '/douggonsouza/regexed/src/regexed.php',
         'douggonsouza\\request\\requested' => __DIR__ . '/../..' . '/src/requested.php',
         'douggonsouza\\request\\routes' => __DIR__ . '/../..' . '/src/routes.php',
         'douggonsouza\\request\\routesInterface' => __DIR__ . '/../..' . '/src/routesInterface.php',
         'douggonsouza\\request\\usages' => __DIR__ . '/../..' . '/src/usages.php',
         'douggonsouza\\request\\usagesInterface' => __DIR__ . '/../..' . '/src/usagesInterface.php',
+        'douggonsouza\\request\\variables' => __DIR__ . '/../..' . '/src/variables.php',
+        'douggonsouza\\request\\variablesInterface' => __DIR__ . '/../..' . '/src/variablesInterface.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

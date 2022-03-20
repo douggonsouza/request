@@ -4,12 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8568677a3902a9e777a4fb4a1864a663",
-    "packages": [],
+    "content-hash": "e14c4a37c1c3ea02aca5a62e5ee5f977",
+    "packages": [
+        {
+            "name": "douggonsouza/regexed",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/douggonsouza/regexed.git",
+                "reference": "8f2f42920e72dc1700265defd89c835dd8c8d6cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/douggonsouza/regexed/zipball/8f2f42920e72dc1700265defd89c835dd8c8d6cc",
+                "reference": "8f2f42920e72dc1700265defd89c835dd8c8d6cc",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "douggonsouza\\regexed\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Douglas Gonçalves de Souza",
+                    "email": "douggonsouza@gmail.com"
+                }
+            ],
+            "description": "Tradutor de palavras para expressões regex",
+            "support": {
+                "issues": "https://github.com/douggonsouza/regexed/issues",
+                "source": "https://github.com/douggonsouza/regexed/tree/v1.0.0"
+            },
+            "time": "2022-03-20T12:23:26+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "douggonsouza/regexed": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

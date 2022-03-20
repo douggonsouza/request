@@ -1,11 +1,11 @@
 {
-    "name": "douggonsouza/request",
-    "description": "Tratamento da requisição e coleta de parâmetros para o roteamento",
+    "name": "douggonsouza/regexed",
+    "description": "Tradutor de palavras para expressões regex",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "douggonsouza\\request\\": "src/"
+            "douggonsouza\\regexed\\": "src/"
         }
     },
     "authors": [
@@ -15,8 +15,5 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {
-        "php": "^7.2",
-        "douggonsouza/regexed": "dev-main"
-    }
+    "require": {}
 }

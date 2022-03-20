@@ -7,9 +7,14 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'douggonsouza\\regexed\\dicionary' => $vendorDir . '/douggonsouza/regexed/src/dicionary.php',
+    'douggonsouza\\regexed\\dicionaryInterface' => $vendorDir . '/douggonsouza/regexed/src/dicionaryInterface.php',
+    'douggonsouza\\regexed\\regexed' => $vendorDir . '/douggonsouza/regexed/src/regexed.php',
     'douggonsouza\\request\\requested' => $baseDir . '/src/requested.php',
     'douggonsouza\\request\\routes' => $baseDir . '/src/routes.php',
     'douggonsouza\\request\\routesInterface' => $baseDir . '/src/routesInterface.php',
     'douggonsouza\\request\\usages' => $baseDir . '/src/usages.php',
     'douggonsouza\\request\\usagesInterface' => $baseDir . '/src/usagesInterface.php',
+    'douggonsouza\\request\\variables' => $baseDir . '/src/variables.php',
+    'douggonsouza\\request\\variablesInterface' => $baseDir . '/src/variablesInterface.php',
 );
