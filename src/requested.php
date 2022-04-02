@@ -20,10 +20,16 @@ abstract class requested implements usagesInterface
      * 
      * @return object
      */
-    public static function usages(usagesInterface $usages)
+    public static function usages(usagesInterface $usages = null)
     {
         self::setUsages($usages);
         return self::getUsages();
+    }
+
+    public static function routing()
+    {
+        $routes = self::getUsages()->getRoute();
+        include_once $routes;
     }
 
     /**
@@ -35,11 +41,16 @@ abstract class requested implements usagesInterface
      */
     public function parameters(array $folders)
     {
-        if(self::getUsages() !== null){
-            return self::getUsages()->parameters($folders);
+        if(self::getUsages() === null){
+            throw new \Exception("Não está definido objeto Usages.");
         }
-        
-        return false;
+
+        if(!isset($folders) || empty($folders)){
+            throw new \Exception("Lista de 'Routes' não encontrado.");
+        }
+
+        self::getUsages()->parameters($folders);
+        return $this;
     }
 
     /**

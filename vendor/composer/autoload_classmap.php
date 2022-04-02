@@ -14,6 +14,8 @@ return array(
     'douggonsouza\\request\\requested' => $baseDir . '/src/requested.php',
     'douggonsouza\\request\\routes' => $baseDir . '/src/routes.php',
     'douggonsouza\\request\\routesInterface' => $baseDir . '/src/routesInterface.php',
+    'douggonsouza\\request\\routings' => $baseDir . '/src/routings.php',
+    'douggonsouza\\request\\routingsInterface' => $baseDir . '/src/routingsInterface.php',
     'douggonsouza\\request\\usages' => $baseDir . '/src/usages.php',
     'douggonsouza\\request\\usagesInterface' => $baseDir . '/src/usagesInterface.php',
 );

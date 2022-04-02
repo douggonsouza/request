@@ -21,6 +21,7 @@ class usages implements usagesInterface
     private $route;
     private $routes;
     private $regexed;
+    private $header;
 
     public function __construct(dicionaryInterface $dicionary)
     {
@@ -37,7 +38,7 @@ class usages implements usagesInterface
     public function parameters(array $routes)
     {
         $this->setRoutes($routes);
-        $this->protocol()->host()->dir()->queryString()->request();
+        $this->protocol()->host()->dir()->queryString()->request()->header();
         $this->route();
 
         return $this;
@@ -50,11 +51,10 @@ class usages implements usagesInterface
      */
     public function request()
     {
-        if(!isset($_SERVER['REQUEST_URI'])){
-            throw new \Exception("Não encontrada a requisição.");
+        if(isset($_SERVER['REQUEST_URI'])){
+            $this->setRequest(str_replace('?'.$this->getQueryString(),'',$_SERVER['REQUEST_URI']));
         }
-
-        $this->setRequest(str_replace('?'.$this->getQueryString(),'',$_SERVER['REQUEST_URI']));
+        
         return $this;
     }
 
@@ -65,11 +65,10 @@ class usages implements usagesInterface
      */
     public function protocol()
     {
-        if(!isset($_SERVER['SERVER_PROTOCOL'])){
-            throw new \Exception("Não encontrado o Protocolo.");
+        if(isset($_SERVER['SERVER_PROTOCOL'])){
+            $this->setProtocol($_SERVER['SERVER_PROTOCOL']);
         }
 
-        $this->setProtocol(strtolower(explode('/',$_SERVER['SERVER_PROTOCOL'])[0]));
         return $this;
     }
 
@@ -111,7 +110,10 @@ class usages implements usagesInterface
      */
     public function queryString()
     {
-        $this->setQueryString($_SERVER['QUERY_STRING']);
+        if(isset($_SERVER['QUERY_STRING'])){
+            $this->setQueryString($_SERVER['QUERY_STRING']);
+        }
+
         return $this;
     }
 
@@ -139,6 +141,13 @@ class usages implements usagesInterface
                 return $this;
             }
         }
+
+        return $this;
+    }
+
+    public function header()
+    {
+        $this->setHeader(getallheaders());
 
         return $this;
     }
@@ -336,6 +345,28 @@ class usages implements usagesInterface
     {
         if(isset($dicionary) && !empty($dicionary)){
             $this->regexed = new regexed($dicionary);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of header
+     */ 
+    public function getHeader()
+    {
+        return $this->header;
+    }
+
+    /**
+     * Set the value of header
+     *
+     * @return  self
+     */ 
+    public function setHeader($header)
+    {
+        if(isset($header) && !empty($header)){
+            $this->header = $header;
         }
 
         return $this;
