@@ -7,9 +7,10 @@ use douggonsouza\regexed\regexed;
 use douggonsouza\regexed\dicionaryInterface;
 
 /**
- * HANDILING
+ * usages
  * 
  * Forneçe sequencia e funções de tratamento da string de requisição e levantamento dos parâmetros.
+ * @version 1.0.0
  */
 class usages implements usagesInterface
 {
@@ -22,22 +23,28 @@ class usages implements usagesInterface
     private $routes;
     private $regexed;
     private $header;
-
-    public function __construct(dicionaryInterface $dicionary)
+    
+    /**
+     * __construct: Evento construtor da classe
+     *
+     * @param dicionaryInterface $dicionary
+     * @param array              $routes
+     * @return void
+     */
+    public function __construct(dicionaryInterface $dicionary, array $routes = null)
     {
+        $this->setRoutes($routes);
         $this->setRegexed($dicionary);
     }
 
     /**
-     * Executa a sequencia básica
+     * parameters: Executa a sequencia básica
      *
-     * @param array $routes
      * 
      * @return self
      */
-    public function parameters(array $routes)
+    public function parameters()
     {
-        $this->setRoutes($routes);
         $this->protocol()->host()->dir()->queryString()->request()->header();
         $this->route();
 
@@ -45,11 +52,11 @@ class usages implements usagesInterface
     }
 
     /**
-     * Colhe a request
+     * request: Colhe a request
      *
      * @return self 
      */
-    public function request()
+    protected function request()
     {
         if(isset($_SERVER['REQUEST_URI'])){
             $this->setRequest(str_replace('?'.$this->getQueryString(),'',$_SERVER['REQUEST_URI']));
@@ -59,11 +66,11 @@ class usages implements usagesInterface
     }
 
     /**
-     * Colhe o protocolo
+     * protocol: Colhe o protocolo
      *
      * @return self
      */
-    public function protocol()
+    protected function protocol()
     {
         if(isset($_SERVER['SERVER_PROTOCOL'])){
             $this->setProtocol($_SERVER['SERVER_PROTOCOL']);
@@ -73,11 +80,11 @@ class usages implements usagesInterface
     }
 
     /**
-     * Colhe o host
+     * host: Colhe o host
      *
      * @return self
      */
-    public function host()
+    protected function host()
     {
         if(!isset($_SERVER['HTTP_HOST'])){
             throw new \Exception("Não encontrado o Host.");
@@ -88,12 +95,12 @@ class usages implements usagesInterface
     }
 
     /**
-     * Colhe o diretório
+     * dir: Colhe o diretório
      *
      * @return self
      * 
      */
-    public function dir()
+    protected function dir()
     {
         if(!isset($_SERVER['DOCUMENT_ROOT'])){
             throw new \Exception("Não encontrado o diratório.");
@@ -104,11 +111,11 @@ class usages implements usagesInterface
     }
 
     /**
-     * Colhe a queryString
+     * queryString: Colhe a queryString
      * 
      * @return self
      */
-    public function queryString()
+    protected function queryString()
     {
         if(isset($_SERVER['QUERY_STRING'])){
             $this->setQueryString($_SERVER['QUERY_STRING']);
@@ -118,11 +125,11 @@ class usages implements usagesInterface
     }
 
     /**
-     * Colhe a rota
+     * route: Colhe a rota
      *      
      * @return self
      */
-    public function route()
+    protected function route()
     {
         if($this->getRoutes() === null){
             throw new \Exception("Não encontrada as rotas.");
@@ -144,8 +151,13 @@ class usages implements usagesInterface
 
         return $this;
     }
-
-    public function header()
+    
+    /**
+     * header
+     *
+     * @return self
+     */
+    protected function header()
     {
         $this->setHeader(getallheaders());
 
@@ -172,11 +184,10 @@ class usages implements usagesInterface
         return '/^' . $this->getRegexed()->translate($text) . '/';
     }
 
-
-
-
     /**
-     * Get the value of request
+     * getRequest: Get the value of request
+     * 
+     * @return string
      */ 
     public function getRequest()
     {
@@ -188,7 +199,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    public function setRequest(string $request)
+    protected function setRequest(string $request)
     {
         if(isset($request) && !empty($request)){
             $this->request = $request;
@@ -198,7 +209,9 @@ class usages implements usagesInterface
     }
 
     /**
-     * Get the value of routes
+     * getRoutes: Get the value of routes
+     * 
+     * @return array
      */ 
     public function getRoutes()
     {
@@ -210,7 +223,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    public function setRoutes(array $routes)
+    protected function setRoutes(array $routes)
     {
         if(isset($routes) && !empty($routes)){
             $this->routes = $routes;
@@ -220,7 +233,9 @@ class usages implements usagesInterface
     }
 
     /**
-     * Get the value of host
+     * getHost: Get the value of host
+     * 
+     * @return string
      */ 
     public function getHost()
     {
@@ -232,7 +247,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    public function setHost($host)
+    protected function setHost($host)
     {
         if(isset($host) && !empty($host)){
             $this->host = $host;
@@ -242,7 +257,9 @@ class usages implements usagesInterface
     }
 
     /**
-     * Get the value of dir
+     * getDir: Get the value of dir
+     * 
+     * @return string
      */ 
     public function getDir()
     {
@@ -254,7 +271,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    public function setDir($dir)
+    protected function setDir($dir)
     {
         if(isset($dir) && !empty($dir)){
             $this->dir = $dir;
@@ -264,7 +281,9 @@ class usages implements usagesInterface
     }
 
     /**
-     * Get the value of protocol
+     * getProtocol: Get the value of protocol
+     * 
+     * @return string
      */ 
     public function getProtocol()
     {
@@ -276,7 +295,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    public function setProtocol($protocol)
+    protected function setProtocol($protocol)
     {
         if(isset($protocol) && !empty($protocol)){
             $this->protocol = $protocol;
@@ -285,7 +304,9 @@ class usages implements usagesInterface
     }
 
     /**
-     * Get the value of queryString
+     * getQueryString: Get the value of queryString
+     * 
+     * @return string
      */ 
     public function getQueryString()
     {
@@ -297,7 +318,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    public function setQueryString($queryString)
+    protected function setQueryString($queryString)
     {
         if(isset($queryString) && !empty($queryString)){
             $this->queryString = $queryString;
@@ -307,7 +328,9 @@ class usages implements usagesInterface
     }
 
     /**
-     * Get the value of route
+     * getRoute: Get the value of route
+     * 
+     * @return string
      */ 
     public function getRoute()
     {
@@ -319,7 +342,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    public function setRoute($route)
+    protected function setRoute($route)
     {
         if(isset($route) && !empty($route)){
             $this->route = $route;
@@ -329,7 +352,9 @@ class usages implements usagesInterface
     }
 
     /**
-     * Get the value of regexed
+     * getRegexed: Get the value of regexed
+     * 
+     * @return mixed
      */ 
     public function getRegexed()
     {
@@ -341,7 +366,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    public function setRegexed($dicionary)
+    protected function setRegexed($dicionary)
     {
         if(isset($dicionary) && !empty($dicionary)){
             $this->regexed = new regexed($dicionary);
@@ -351,7 +376,9 @@ class usages implements usagesInterface
     }
 
     /**
-     * Get the value of header
+     * getHeader: Get the value of header
+     * 
+     * @return array
      */ 
     public function getHeader()
     {
@@ -363,7 +390,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    public function setHeader($header)
+    protected function setHeader($header)
     {
         if(isset($header) && !empty($header)){
             $this->header = $header;

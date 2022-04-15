@@ -5,12 +5,14 @@ namespace douggonsouza\request;
 use douggonsouza\request\usagesInterface;
 
 /**
- * REQUESTED
+ * requested
  * 
  * Trata a requisição para a identificação de parâmetros necessários ao roteamento
+ * @version 1.0.0
  */
-abstract class requested implements usagesInterface
-{
+abstract class requested
+{    
+    /** @var mixed $usages */
     protected static $usages;
 
     /**
@@ -19,43 +21,31 @@ abstract class requested implements usagesInterface
      * @param usagesInterface $variable
      * 
      * @return object
-     */
+     */    
+
     public static function usages(usagesInterface $usages = null)
     {
-        self::setUsages($usages);
-        return self::getUsages();
+        if(isset($usages) && !empty($usages)){
+            self::setUsages($usages);
+        }
+        
+        return self::getUsages()->parameters();
     }
-
-    public static function routing()
-    {
-        $routes = self::getUsages()->getRoute();
-        include_once $routes;
-    }
-
+    
     /**
-     * Executa a sequencia básica
+     * routing: Carrega arquivo configurado como responsável pelo roteamento da requisição
      *
-     * @param array $folders
-     * 
-     * @return self
+     * @return void
      */
-    public function parameters(array $folders)
+    public static function routing(usagesInterface $usages = null)
     {
-        if(self::getUsages() === null){
-            throw new \Exception("Não está definido objeto Usages.");
-        }
-
-        if(!isset($folders) || empty($folders)){
-            throw new \Exception("Lista de 'Routes' não encontrado.");
-        }
-
-        self::getUsages()->parameters($folders);
-        return $this;
+        $usages = self::usages($usages);
+        include_once $usages->getRoute();
     }
 
     /**
      * Get the value of variables
-     */ 
+     */     
     public static function getUsages()
     {
         return self::$usages;
@@ -66,7 +56,7 @@ abstract class requested implements usagesInterface
      *
      * @return  self
      */ 
-    public static function setUsages($usages)
+    private static function setUsages($usages)
     {
         if(isset($usages) && !empty($usages)){
             self::$usages = $usages;

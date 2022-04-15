@@ -4,13 +4,19 @@ namespace douggonsouza\request;
 
 use douggonsouza\request\routingsInterface;
 
+/**
+ * routings: Armazena parâmetros das classes de roteamento
+ * 
+ * @version 1.0.0
+ */
 abstract class routings implements routingsInterface
 {
-
-    public static $routes = array();
+    
+    /** @var array $routes */
+    protected static $routes = array();
 
     /**
-     * Adiciona ao array de routes
+     * add: Adiciona roteamento ao array de routes
      *
      * @param string $identification
      * @param string $routing
@@ -23,7 +29,7 @@ abstract class routings implements routingsInterface
     }
 
     /**
-     * Exporta o array de routes
+     * get: Expõe o array de routes
      *
      * @return array
      * 

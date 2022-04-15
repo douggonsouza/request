@@ -16,6 +16,6 @@ interface usagesInterface
      * 
      * @return self
      */
-    public function parameters(array $routes);
+    public function parameters();
 }
 ?>

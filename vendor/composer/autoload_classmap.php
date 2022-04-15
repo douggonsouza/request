@@ -12,8 +12,6 @@ return array(
     'douggonsouza\\regexed\\regexed' => $vendorDir . '/douggonsouza/regexed/src/regexed.php',
     'douggonsouza\\request\\dicionary' => $baseDir . '/src/dicionary.php',
     'douggonsouza\\request\\requested' => $baseDir . '/src/requested.php',
-    'douggonsouza\\request\\routes' => $baseDir . '/src/routes.php',
-    'douggonsouza\\request\\routesInterface' => $baseDir . '/src/routesInterface.php',
     'douggonsouza\\request\\routings' => $baseDir . '/src/routings.php',
     'douggonsouza\\request\\routingsInterface' => $baseDir . '/src/routingsInterface.php',
     'douggonsouza\\request\\usages' => $baseDir . '/src/usages.php',

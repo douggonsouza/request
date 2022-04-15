@@ -4,10 +4,15 @@ namespace douggonsouza\request;
 
 use douggonsouza\regexed\dicionaryInterface;
 
+/**
+ * dicionary: Coleção de funções tradutoras regex
+ * 
+ * @version 1.0.0
+ */
 class dicionary implements dicionaryInterface
 {
     /**
-     * Lista array com a etiquetas da classe
+     * Lista traduções regex da classe
      *
      * @return array
      * 
@@ -20,7 +25,7 @@ class dicionary implements dicionaryInterface
     }
 
     /**
-     * Tradux a word _number
+     * Tradução para a palavra _number
      *
      * @param string $text
      * 
@@ -37,7 +42,7 @@ class dicionary implements dicionaryInterface
     }
 
     /**
-     * Traduz a word _char
+     * Tradução para a palavra _char
      *
      * @param string $text
      * 
@@ -54,7 +59,7 @@ class dicionary implements dicionaryInterface
     }
 
     /**
-     * traduz a word _alfanumeric
+     * Tradução para a palavra _alfanumeric
      *
      * @param string $text
      * 
@@ -71,7 +76,7 @@ class dicionary implements dicionaryInterface
     }
 
     /**
-     * Traduz a word _string
+     * Tradução para a palavra _string
      *
      * @param string $text
      * 
