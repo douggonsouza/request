@@ -14,7 +14,10 @@ use douggonsouza\regexed\dicionaryInterface;
  */
 class usages implements usagesInterface
 {
+    const ROUTE_DEFAULT = 'default';
+
     private $request;
+    private $paramsRequest;
     private $protocol;
     private $host;
     private $dir;
@@ -23,6 +26,7 @@ class usages implements usagesInterface
     private $routes;
     private $regexed;
     private $header;
+    private $requestMethod;
     
     /**
      * __construct: Evento construtor da classe
@@ -38,14 +42,20 @@ class usages implements usagesInterface
     }
 
     /**
-     * parameters: Executa a sequencia básica
-     *
+     * Executa a sequencia básica
      * 
      * @return self
      */
     public function parameters()
     {
-        $this->protocol()->host()->dir()->queryString()->request()->header();
+        $this->protocol();
+        $this->host();
+        $this->dir();
+        $this->queryString();
+        $this->request();
+        $this->paramsRequest();
+        $this->header();
+        $this->requestMethod();
         $this->route();
 
         return $this;
@@ -60,6 +70,33 @@ class usages implements usagesInterface
     {
         if(isset($_SERVER['REQUEST_URI'])){
             $this->setRequest(str_replace('?'.$this->getQueryString(),'',$_SERVER['REQUEST_URI']));
+        }
+        
+        return $this;
+    }
+    
+    /**
+     * paramsRequest - Quebra a request em parâmetros
+     *
+     * @param string $request [explicite description]
+     *
+     * @return void
+     */
+    protected function paramsRequest()
+    {
+        if(isset($_SERVER['REQUEST_URI'])){
+            $request = explode('?', $_SERVER['REQUEST_URI']);
+
+            // parâmetros
+            $params = array();
+            foreach(explode('/', $request[0]) as $item){
+                if(isset($item) && !empty($item)){
+                    $params[] = $item;
+                }
+            }
+            $request[0] = $params;
+
+            $this->setParamsRequest($request);
         }
         
         return $this;
@@ -87,10 +124,15 @@ class usages implements usagesInterface
     protected function host()
     {
         if(!isset($_SERVER['HTTP_HOST'])){
-            throw new \Exception("Não encontrado o Host.");
+            throw new \Exception("Não encontrado o Host ou o Scheme.");
         }
 
-        $this->setHost($_SERVER['HTTP_HOST']);
+        $host = $_SERVER['HTTP_HOST'];
+        if(isset($_SERVER['REQUEST_SCHEME'])){
+            $host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
+        }
+
+        $this->setHost($host);
         return $this;
     }
 
@@ -135,11 +177,9 @@ class usages implements usagesInterface
             throw new \Exception("Não encontrada as rotas.");
         }
 
-        $route = null;
-
         foreach($this->getRoutes() as $index => $value){
-            if($this->getRequest() === '/' && $index === 'default'){
-                $this->setRoute($value);
+            if($this->getRequest() === '/'){
+                $this->setRoute($this->getRoutes()[self::ROUTE_DEFAULT]);
                 return $this;
             }
 
@@ -149,7 +189,7 @@ class usages implements usagesInterface
             }
         }
 
-        return $this;
+        return $this->setRoute($this->getRoutes()[self::ROUTE_DEFAULT]);
     }
     
     /**
@@ -160,6 +200,18 @@ class usages implements usagesInterface
     protected function header()
     {
         $this->setHeader(getallheaders());
+
+        return $this;
+    }
+
+    /**
+     * requestMethod
+     * 
+     * @return self
+     */
+    protected function requestMethod()
+    {
+        $this->setRequestMethod($_SERVER['REQUEST_METHOD']);
 
         return $this;
     }
@@ -223,7 +275,7 @@ class usages implements usagesInterface
      *
      * @return  self
      */ 
-    protected function setRoutes(array $routes)
+    protected function setRoutes(array $routes = null)
     {
         if(isset($routes) && !empty($routes)){
             $this->routes = $routes;
@@ -394,6 +446,50 @@ class usages implements usagesInterface
     {
         if(isset($header) && !empty($header)){
             $this->header = $header;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of requestMethod
+     */ 
+    public function getRequestMethod()
+    {
+        return $this->requestMethod;
+    }
+
+    /**
+     * Set the value of requestMethod
+     *
+     * @return  self
+     */ 
+    public function setRequestMethod($requestMethod)
+    {
+        if(isset($requestMethod) && !empty($requestMethod)){
+            $this->requestMethod = $requestMethod;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of paramsRequest
+     */ 
+    public function getParamsRequest()
+    {
+        return $this->paramsRequest;
+    }
+
+    /**
+     * Set the value of paramsRequest
+     *
+     * @return  self
+     */ 
+    public function setParamsRequest($paramsRequest)
+    {
+        if(isset($paramsRequest) && !empty($paramsRequest)){
+            $this->paramsRequest = $paramsRequest;
         }
 
         return $this;

@@ -37,10 +37,9 @@ abstract class requested
      *
      * @return void
      */
-    public static function routing(usagesInterface $usages = null)
+    public static function routing(usagesInterface $usages)
     {
-        $usages = self::usages($usages);
-        include_once $usages->getRoute();
+        include_once (self::getUsages())->getRoute();
     }
 
     /**

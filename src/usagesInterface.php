@@ -11,8 +11,6 @@ interface usagesInterface
 {
     /**
      * Executa a sequencia básica
-     *
-     * @param array $routes
      * 
      * @return self
      */
