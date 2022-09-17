@@ -17,6 +17,6 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.2",
-        "douggonsouza/regexed": "dev-main"
+        "douggonsouza/regexed": "^1.0.0"
     }
 }
