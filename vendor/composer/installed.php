@@ -3,7 +3,7 @@
         'name' => 'douggonsouza/request',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '8ee7a557a8dcac9286ee83f7574268badbd9f73c',
+        'reference' => 'cd7a9cbfc5dffb4288007161ff3c200cec9740e5',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'douggonsouza/request' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '8ee7a557a8dcac9286ee83f7574268badbd9f73c',
+            'reference' => 'cd7a9cbfc5dffb4288007161ff3c200cec9740e5',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
