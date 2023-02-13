@@ -5,6 +5,7 @@ namespace douggonsouza\request;
 use douggonsouza\request\usagesInterface;
 use douggonsouza\regexed\regexed;
 use douggonsouza\regexed\dicionaryInterface;
+use douggonsouza\request\routings;
 
 /**
  * usages
@@ -35,9 +36,8 @@ class usages implements usagesInterface
      * @param array              $routes
      * @return void
      */
-    public function __construct(dicionaryInterface $dicionary, array $routes = null)
+    public function __construct(dicionaryInterface $dicionary)
     {
-        $this->setRoutes($routes);
         $this->setRegexed($dicionary);
     }
 
@@ -173,23 +173,16 @@ class usages implements usagesInterface
      */
     protected function route()
     {
-        if($this->getRoutes() === null){
-            throw new \Exception("Não encontrada as rotas.");
-        }
+        $this->setRoute(routings::get()[self::ROUTE_DEFAULT]);
 
-        foreach($this->getRoutes() as $index => $value){
-            if($this->getRequest() === '/'){
-                $this->setRoute($this->getRoutes()[self::ROUTE_DEFAULT]);
-                return $this;
-            }
-
+        foreach(routings::get() as $index => $value){
             if (preg_match($this->translate($index), $this->getRequest(), $params)) {
                 $this->setRoute($value);
                 return $this;
             }
         }
 
-        return $this->setRoute($this->getRoutes()[self::ROUTE_DEFAULT]);
+        return $this;
     }
     
     /**
