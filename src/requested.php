@@ -39,7 +39,7 @@ abstract class requested
      */
     public static function routing(usagesInterface $usages)
     {
-        if(isset($usages) && !empty($usages)){
+        if(isset($usages) && empty($usages)){
             self::setUsages($usages);
         }
 
