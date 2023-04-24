@@ -128,8 +128,9 @@ class usages implements usagesInterface
         }
 
         $host = $_SERVER['HTTP_HOST'];
-        if(isset($_SERVER['REQUEST_SCHEME'])){
-            $host = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'];
+        $protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https' : 'http';
+        if(isset($protocol)){
+            $host = $protocol . '://' . $_SERVER['HTTP_HOST'];
         }
 
         $this->setHost($host);
